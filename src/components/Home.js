@@ -4,10 +4,10 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 function Home() {
   return (
     <div className="bg-black text-white">
-      <Container fluid>
-        <Row>
+      <Container>
+        <Row className="pb-3 my-5 py-2">
           <Col md={6} className="p-5">
-            <h2 className="">
+            <h2 className="mb-4">
               <strong>
                 <span
                   style={{
@@ -20,7 +20,7 @@ function Home() {
                 </span>
               </strong>
             </h2>
-            <h2 className="">
+            <h2 className="mb-4">
               <strong>
                 <span
                   style={{
@@ -33,7 +33,7 @@ function Home() {
                 </span>
               </strong>
             </h2>
-            <h2 className="">
+            <h2 className="mb-4">
               <strong>
                 <span
                   style={{
@@ -46,7 +46,7 @@ function Home() {
                 </span>
               </strong>
             </h2>
-            <h2 className="">
+            <h2 className="mb-4">
               <strong>
                 {" "}
                 <span

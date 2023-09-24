@@ -4,13 +4,15 @@ import axios from "axios";
 import TripTypeSelector from "./TripTypeSelector";
 import RouteList from "./RouteList";
 import ReturnDateInput from "./ReturnDateInput";
-import RecommendationCard from "./RecommendationCard";
 import { Card, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { RECOMMEND_FLIGHTS_API } from "../config";
+import FlightRecommendationList from "./FlightRecommendationList";
 
 function FlightRoutes() {
   const [recommendations, setRecommendations] = useState([]);
   const [tripType, setTripType] = useState("one-way");
+  const [loading, setLoading] = useState(false); // Initialize loading state as false
   const [routes, setRoutes] = useState([
     {
       airport_from: "",
@@ -20,15 +22,13 @@ function FlightRoutes() {
     },
   ]);
   const [returnDate, setReturnDate] = useState("");
-  const [airlines, setAirlines] = useState();
-  const [date, setDate] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when the form is submitted
 
     const formData = {
       class_: [],
-      airlines,
       tripType,
       routes: routes.map((route) => ({
         date: route.departure_date,
@@ -39,15 +39,14 @@ function FlightRoutes() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/recommend_flights/",
-        formData
-      );
+      const response = await axios.post(RECOMMEND_FLIGHTS_API, formData);
 
       console.log("Recommendations:", response.data);
       setRecommendations(response.data);
+      setLoading(false); // Set loading to false when data is received
     } catch (error) {
       console.error("Error:", error);
+      setLoading(false); // Set loading to false when data is received
     }
   };
 
@@ -70,16 +69,16 @@ function FlightRoutes() {
   };
 
   return (
-    <>
-      <section className="m-5 sticky-top fixed-top">
-        <Card className="mt-4">
+    <div className="bg-black pt-5 vh-100 w-100">
+      <section className="px-5 py-1 sticky-top fixed-top">
+        <Card className="">
           <Card.Body>
-            {/* <h3>Flight Booking</h3> */}
             <Form onSubmit={handleSubmit} id="flightBook">
               <Form.Group controlId="tripType">
                 <TripTypeSelector
                   tripType={tripType}
                   setTripType={setTripType}
+                  setRoutes={setRoutes}
                 />
               </Form.Group>
               <RouteList
@@ -92,33 +91,21 @@ function FlightRoutes() {
                 returnDate={returnDate}
                 setReturnDate={setReturnDate}
               />
-              <Button
-                variant="primary"
-                type="submit"
-                className="d-flex justify-content-center"
-              >
-                Search
-              </Button>
+
+              <div className="text-center mt-1">
+                <Button variant="primary" type="submit" className="">
+                  Search
+                </Button>
+              </div>
             </Form>
           </Card.Body>
         </Card>
       </section>
-      <section id="recommendations" className="mt-5">
-        <div className="container">
-          {/* <div className="row">
-            <h4 className>Flight Recommendations</h4> */}
-          <div
-            className="col-md-12"
-            style={{ maxHeight: "400px", overflowY: "auto" }}
-          >
-            {recommendations.map((routeArray, index) => (
-              <RecommendationCard key={index} routeArray={routeArray} />
-            ))}
-          </div>
-        </div>
-        {/* </div> */}
-      </section>
-    </>
+      <FlightRecommendationList
+        recommendations={recommendations}
+        loading={loading}
+      />
+    </div>
   );
 }
 

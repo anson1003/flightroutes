@@ -1,22 +1,24 @@
-// ReturnDateInput.js
 import React from "react";
+import { Form, FormGroup, Row, Col } from "react-bootstrap";
 
 function ReturnDateInput({ tripType, returnDate, setReturnDate }) {
   return (
-    <div className="form-group">
+    <Row>
       {tripType === "round-trip" && (
-        <div className="form-group">
-          <label htmlFor="returnDate">Return Date</label>
-          <input
-            type="date"
-            id="returnDate"
-            value={returnDate}
-            onChange={(e) => setReturnDate(e.target.value)}
-            required
-          />
-        </div>
+        <Col xs={6} md={3}>
+          <FormGroup>
+            <Form.Label htmlFor="returnDate">Return Date</Form.Label>
+            <Form.Control
+              type="date"
+              id="returnDate"
+              value={returnDate}
+              onChange={(e) => setReturnDate(e.target.value)}
+              required
+            />
+          </FormGroup>
+        </Col>
       )}
-    </div>
+    </Row>
   );
 }
 
