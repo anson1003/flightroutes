@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card"; // Import Bootstrap Card component
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function AirlineRoutes() {
   const { airlineCode } = useParams();
@@ -33,9 +35,16 @@ function AirlineRoutes() {
     <div className="text-white mt-4 p-5 vh-100 w-100">
       <h1>Routes for Airline {airlineCode}</h1>
       {loading ? (
-        <p>Loading...</p>
-      ) : routes.length === 0 ? (
-        <p>No routes found for this airline.</p>
+        <p className="text-center text-white">
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            size="2xl"
+            style={{ color: "#0a12ff" }}
+          />
+        </p>
+      ) : routes.length === 0 || routes[0].length === 0 ? (
+        <p className="text-center">No routes found for this airline.</p>
       ) : (
         routes.map((routeArray, outerIndex) => (
           <div key={outerIndex}>

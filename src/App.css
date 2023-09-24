@@ -1,3 +1,5 @@
+/* App.css */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 .App {
   text-align: center;
 }
@@ -35,4 +37,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* App.css */
+.no-underline {
+  text-decoration: none;
 }

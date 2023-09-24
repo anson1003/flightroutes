@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ReactPaginate from "react-paginate";
 import "./Airlines.css"; // Import your custom CSS file for styling
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function Airlines() {
   const [airlines, setAirlines] = useState([]);
@@ -65,7 +67,16 @@ function Airlines() {
       </div>
 
       {/* Loading message */}
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <p className="text-center text-white">
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            size="2xl"
+            style={{ color: "#0a12ff" }}
+          />
+        </p>
+      )}
 
       <div className="row">
         {currentAirlines.map((airline) => (

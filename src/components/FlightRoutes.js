@@ -27,7 +27,7 @@ function FlightRoutes() {
     e.preventDefault();
     setLoading(true); // Set loading to true when the form is submitted
 
-    const formData = {
+    let formData = {
       class_: [],
       tripType,
       routes: routes.map((route) => ({
@@ -35,8 +35,17 @@ function FlightRoutes() {
         departure: route.airport_from,
         arrival: route.airport_to,
       })),
-      returnDate: tripType === "round-trip" ? returnDate : null,
+      // returnDate: tripType === "round-trip" ? returnDate : null,
     };
+
+    // Include return route data for round-trip
+    if (tripType === "round-trip") {
+      formData.routes.push({
+        date: returnDate,
+        departure: routes[0].airport_to,
+        arrival: routes[0].airport_from,
+      });
+    }
 
     try {
       const response = await axios.post(RECOMMEND_FLIGHTS_API, formData);
