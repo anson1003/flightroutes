@@ -45,7 +45,7 @@ code {
 .react-autosuggest__suggestions-container {
   position: absolute;
   top: 40px;
-  width: 210px;
+  width: 209px;
   margin: 0;
   padding: 0;
   list-style-type: none;

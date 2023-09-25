@@ -45,7 +45,7 @@ function RouteInput({ route, index, handleRouteChange }) {
   };
 
   const handleSuggestionClick = (inputName, suggestion) => {
-    handleInputChange(inputName, suggestion.code);
+    handleInputChange(inputName, suggestion.id);
   };
 
   const handleInputBlur = (inputName) => {

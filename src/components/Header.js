@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
   return (
@@ -51,7 +53,20 @@ function Header() {
             </Nav.Item>
             <Nav.Item>
               <Link to="/airports" className="nav-link">
+                {" "}
                 Airports
+              </Link>
+            </Nav.Item>
+          </Nav>
+          <Nav className="ml-auto">
+            <Nav.Item cla>
+              <Link to="" className="nav-link">
+                <FontAwesomeIcon icon={faBell} />
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="" className="nav-link">
+                <FontAwesomeIcon icon={faUser} />
               </Link>
             </Nav.Item>
           </Nav>

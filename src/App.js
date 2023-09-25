@@ -6,6 +6,7 @@ import Airports from "./components/Airports";
 import FlightRoutes from "./components/FlightRoutes";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import RouteDetails from "./components/RouteDetails";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/routes" element={<FlightRoutes />} />
           <Route path="/airlines" element={<Airlines />} />
           <Route path="/airports" element={<Airports />} />
+          <Route path="/route/:routeIndex" element={<RouteDetails />} />
+
           {/* Define the route for AirlineRoutes with a dynamic parameter */}
           <Route path="/airlines/:airlineCode" element={<AirlineRoutes />} />
           {/* Add other routes here */}

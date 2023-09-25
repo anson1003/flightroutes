@@ -25,10 +25,19 @@ function FlightRecommendationCard({ routeArray }) {
                 <strong>
                   {route.airlineName}({route.airlineIATA})
                 </strong>
+                <p className="button-secondary"></p>
               </p>
               <p>
-                <Link className="no-underline">Flight Details</Link>{" "}
-                <Link className="no-underline">Price Details</Link>
+                <Link
+                  to={{
+                    pathname: `/route/${routeIndex}`,
+                    state: { routeArray, routeIndex }, // Pass routeArray and routeIndex as state
+                  }}
+                  className="no-underline"
+                >
+                  Full Details
+                </Link>{" "}
+                {/* <Link className="no-underline">Price Details</Link> */}
               </p>
             </div>
 
@@ -67,33 +76,6 @@ function FlightRecommendationCard({ routeArray }) {
                 </Button>
               </p>
             </div>
-            {/* <div>
-              <p>
-                <strong>From:</strong>
-              </p>
-              <p>
-                {route.airportFromName}({route.airportFromCode})
-              </p>
-            </div>
-            <div>
-              <p>
-                <strong>Airline:</strong>
-                {route.airlineName} ({route.airlineIATA})
-              </p>
-              <p>
-                <strong>Duration:</strong>{" "}
-                {Math.ceil(route.common_duration / 60)}
-                :Hrs
-              </p>
-            </div>
-            <div>
-              <p>
-                <strong>To:</strong>
-              </p>
-              <p>
-                {route.airportToName} ({route.airportToCode})
-              </p>
-            </div> */}
           </Card.Body>
         </Card>
       ))}

@@ -60,7 +60,7 @@ function Home() {
                 </span>
               </strong>
             </h2>
-            <p>
+            <p className="text-secondary">
               FlyMe is an innovative online platform designed to help you
               effortlessly track flights and stay informed about every aspect of
               your air travel experience. Whether you're a frequent flyer or

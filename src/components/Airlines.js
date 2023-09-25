@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ReactPaginate from "react-paginate";
-import "./Airlines.css"; // Import your custom CSS file for styling
+import "./Airline.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { AIRLINE_API } from "../config";
 
 function Airlines() {
   const [airlines, setAirlines] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true); // Track loading state
-  const airlinesPerPage = 9; // Number of airlines to display per page
+  const airlinesPerPage = 12; // Number of airlines to display per page
 
   useEffect(() => {
     // Fetch the list of airlines when the component mounts
-    fetch("http://localhost:8000/airlines/")
+    fetch(AIRLINE_API)
       .then((response) => response.json())
       .then((data) => {
         setAirlines(data);
@@ -53,13 +54,13 @@ function Airlines() {
 
   return (
     <div className="text-white mt-4 p-5 vh-100 w-100">
-      <h1>Airlines</h1>
+      <h2>Airlines</h2>
 
       {/* Search Bar */}
       <div className="mb-3">
         <input
           type="text"
-          placeholder="Search by name or code"
+          placeholder="Search Airlines by name or code"
           value={searchTerm}
           onChange={handleSearch}
           className="form-control"
@@ -78,11 +79,11 @@ function Airlines() {
         </p>
       )}
 
-      <div className="row">
+      <div className="row ">
         {currentAirlines.map((airline) => (
-          <div key={airline.IATA} className="col-lg-4 mb-4">
+          <div key={airline.IATA} className="col-lg-4 mb-3">
             <Link to={`/airlines/${airline.IATA}`}>
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-body">
                   <h5 className="card-title">
                     <span className="name">{airline.name}</span>

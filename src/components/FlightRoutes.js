@@ -77,9 +77,15 @@ function FlightRoutes() {
     ]);
   };
 
+  const removeRoute = (index) => {
+    const updatedRoutes = [...routes];
+    updatedRoutes.splice(index, 1);
+    setRoutes(updatedRoutes);
+  };
+
   return (
     <div className="bg-black pt-5 vh-100 w-100">
-      <section className="px-5 py-1 sticky-top fixed-top">
+      <section className="px-5 py-1">
         <Card className="">
           <Card.Body>
             <Form onSubmit={handleSubmit} id="flightBook">
@@ -94,6 +100,7 @@ function FlightRoutes() {
                 routes={routes}
                 handleRouteChange={handleRouteChange}
                 addRoute={tripType === "multi-city" && addRoute}
+                removeRoute={tripType === "multi-city" ? removeRoute : null}
               />
               <ReturnDateInput
                 tripType={tripType}

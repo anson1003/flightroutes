@@ -1,0 +1,21 @@
+/* Airlines.css */
+.name {
+  width: 75%;
+  display: inline-block;
+}
+
+.code {
+  width: 25%;
+  display: inline-block;
+  text-align: right;
+}
+
+.center-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+.card-hover:hover {
+  background-color: #9fcaee; /* Change the background color to your desired color */
+  /* Add any other CSS properties you want to change on hover */
+}

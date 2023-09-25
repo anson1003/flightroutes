@@ -5,6 +5,7 @@ import axios from "axios";
 import Card from "react-bootstrap/Card"; // Import Bootstrap Card component
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { AIRLINE_ROUTE_API } from "../config";
 
 function AirlineRoutes() {
   const { airlineCode } = useParams();
@@ -19,7 +20,7 @@ function AirlineRoutes() {
 
     // Make a POST request to your endpoint
     axios
-      .post("http://localhost:8000/recommend_airline_routes/", requestBody)
+      .post(AIRLINE_ROUTE_API, requestBody)
       .then((response) => {
         // Set the routes data in the state
         setRoutes(response.data);
@@ -33,7 +34,7 @@ function AirlineRoutes() {
 
   return (
     <div className="text-white mt-4 p-5 vh-100 w-100">
-      <h1>Routes for Airline {airlineCode}</h1>
+      <h3>Routes for Airline {airlineCode}</h3>
       {loading ? (
         <p className="text-center text-white">
           <FontAwesomeIcon
